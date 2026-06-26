@@ -32,7 +32,7 @@ export default function Navbar() {
           <Link href="/" className="flex items-center gap-2 group">
             <div className="size-9 bg-neutral-900 rounded-xl flex items-center justify-center overflow-hidden border border-white/10 group-hover:scale-105 transition-transform duration-300">
               <img 
-                src="/assets/logo.png" 
+                src="/assets/icon.png" 
                 alt="CAFiiTECH Logo" 
                 className="w-full h-full object-cover"
                 onError={(e) => { e.target.style.display = 'none'; }} 

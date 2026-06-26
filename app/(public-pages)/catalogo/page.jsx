@@ -17,7 +17,7 @@ export default function CatalogoPage() {
       id: "airpods-3",
       name: 'AirPods 3ra Generación',
       badge: 'AUDIO ESPACIAL',
-      image: '/assets/airpods_3.png',
+      image: '/assets/airpods_3.1.png',
       features: 'Audio espacial personalizado con seguimiento de la cabeza y resistencia al agua/sudor.',
       price: 85000
     },
