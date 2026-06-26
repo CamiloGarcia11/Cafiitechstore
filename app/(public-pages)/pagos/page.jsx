@@ -1,181 +1,147 @@
 'use client';
-
-import { motion } from "framer-motion";
-import { ArrowLeft, CreditCard, ShieldCheck, QrCode, Copy, Check } from "lucide-react";
-import Link from "next/link";
-import { useState } from "react";
+import React from 'react';
+import { CreditCard, QrCode, Smartphone, CheckCircle2, MessageCircle, ArrowLeft, ShieldCheck, Copy } from 'lucide-react';
+import Link from 'next/link';
 
 export default function PagosPage() {
-    const [copiedId, setCopiedId] = useState(null);
+  
+  // Función auxiliar para copiar texto al portapapeles rápidamente
+  const copiarAlPortapapeles = (texto) => {
+    navigator.clipboard.writeText(texto);
+    alert('¡Copiado al portapapeles!');
+  };
 
-    // Configura aquí tus cuentas bancarias reales
-    const cuentasBancarias = [
-        {
-            id: "cuenta-1",
-            banco: "Bancolombia", // O el banco de tu país (Nequi, Daviplata, BBVA, etc.)
-            tipo: "Cuenta de Ahorros",
-            numero: "912-662633-31", // Pon tu número real aquí
-            titular: "CAFiiTECH S.A.S / Edwin Camilo Garcia",
-            color: "from-amber-500/20 to-black"
-        },
-        {
-            id: "cuenta-2",
-            banco: "Nequi / Daviplata",
-            tipo: "Depósito Celular",
-            numero: "3052311490", // Pon tu número real aquí
-            titular: "EDWIN GARCIA",
-            color: "from-fuchsia-500/20 to-black"
-        }
-    ];
+  return (
+    <div className="relative min-h-screen bg-transparent w-full text-white pb-24">
+      
+      {/* BOTÓN VOLVER AL CATÁLOGO */}
+      <div className="max-w-7xl mx-auto px-6 pt-8 relative z-10">
+        <Link 
+          href="/catalogo" 
+          className="inline-flex items-center gap-2 text-gray-400 hover:text-violet-400 transition-colors text-sm font-bold group"
+        >
+          <ArrowLeft className="size-4 transition-transform group-hover:-translate-x-1" />
+          Volver al Catálogo
+        </Link>
+      </div>
 
-    // Configura aquí tus códigos QR de pago rápido
-    const codigosQR = [
-        {
-            banco: "QR Bancolombia",
-            image: "/assets/qr-bancolombia.png", // Guarda la imagen de tu QR en public/assets/
-            instrucciones: "Escanea desde la app de tu banco e ingresa el valor de tus AirPods."
-        },
-        {
-            banco: "QR Nequi",
-            image: "/assets/qr-nequi.png", // Guarda la imagen de tu QR en public/assets/
-            instrucciones: "Escanea directo desde tu celular para una transferencia inmediata."
-        }
-    ];
+      {/* ENCABEZADO */}
+      <div className="py-12 px-6 max-w-7xl mx-auto text-center relative z-10">
+        <h1 className="text-4xl md:text-6xl font-black text-white mb-4 tracking-tighter">
+          Métodos de <span className="text-violet-500">Pago</span>
+        </h1>
+        <p className="text-gray-400 max-w-lg mx-auto text-sm md:text-base font-medium">
+          Elige la opción que prefieras para realizar tu pago de forma rápida y segura.
+        </p>
+      </div>
 
-    // Función práctica para que el cliente pueda copiar el número de cuenta con un solo clic
-    const copiarAlPortapapeles = (texto, id) => {
-        navigator.clipboard.writeText(texto);
-        setCopiedId(id);
-        setTimeout(() => setCopiedId(null), 2000);
-    };
+      {/* CONTENIDO PRINCIPAL: CUENTAS + QR ÚNICO */}
+      <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 relative z-10">
+        
+        {/* LADO IZQUIERDO: INFORMACIÓN DE CUENTAS BANCARIAS */}
+        <div className="space-y-6">
+          <div className="flex items-center gap-3 mb-2">
+            <CreditCard className="size-6 text-violet-500" />
+            <h2 className="text-2xl font-black tracking-tight">Transferencia Bancaria</h2>
+          </div>
+          
+          {/* Tarjeta Cuenta 1: Bancolombia */}
+          <div className="border border-white/5 rounded-3xl bg-white/[0.01] backdrop-blur-md p-6 relative overflow-hidden group hover:border-violet-500/20 transition-all">
+            <div className="flex justify-between items-start">
+              <div>
+                <span className="text-[10px] uppercase font-bold tracking-widest text-violet-400 block mb-1">Banco Principal</span>
+                <h3 className="text-xl font-bold text-white mb-4">Bancolombia</h3>
+                <div className="space-y-2">
+                  <p className="text-xs text-gray-400">Tipo de cuenta: <span className="text-white font-semibold">Ahorros</span></p>
+                  <div className="flex items-center gap-2">
+                    <p className="text-sm text-gray-200">Número: <span className="font-mono text-white font-bold text-base">0092672435</span></p>
+                    <button onClick={() => copiarAlPortapapeles('0092672435')} className="p-1.5 rounded-lg bg-white/5 text-gray-400 hover:text-white transition-colors">
+                      <Copy className="size-3.5" />
+                    </button>
+                  </div>
+                  <p className="text-xs text-gray-400">Titular: <span className="text-white font-semibold">Edwin Garcia</span></p>
+                </div>
+              </div>
+            </div>
+          </div>
 
-    return (
-        <main className="min-h-screen bg-black text-white px-4 md:px-16 lg:px-24 py-12 relative overflow-hidden font-sans">
+          {/* Tarjeta Cuenta 2: Nequi */}
+          <div className="border border-white/5 rounded-3xl bg-white/[0.01] backdrop-blur-md p-6 relative overflow-hidden group hover:border-violet-500/20 transition-all">
+            <div className="flex justify-between items-start">
+              <div>
+                <span className="text-[10px] uppercase font-bold tracking-widest text-violet-400 block mb-1">Plataforma Digital</span>
+                <h3 className="text-xl font-bold text-white mb-4">Nequi</h3>
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2">
+                    <p className="text-sm text-gray-200">Celular / Llave: <span className="font-mono text-white font-bold text-base">3052311490</span></p>
+                    <button onClick={() => copiarAlPortapapeles('3052311490')} className="p-1.5 rounded-lg bg-white/5 text-gray-400 hover:text-white transition-colors">
+                      <Copy className="size-3.5" />
+                    </button>
+                  </div>
+                  <p className="text-xs text-gray-400">Titular: <span className="text-white font-semibold">Edwin Garcia</span></p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Instrucciones Breves */}
+          <div className="bg-white/[0.02] border border-white/5 rounded-2xl p-4 space-y-3">
+            <div className="flex items-start gap-2 text-xs text-gray-400 font-medium">
+              <CheckCircle2 className="size-4 text-emerald-400 shrink-0 mt-0.5" />
+              <span>Puedes hacer transferencia directa si usas las apps de Bancolombia o Nequi.</span>
+            </div>
+            <div className="flex items-start gap-2 text-xs text-gray-400 font-medium">
+              <CheckCircle2 className="size-4 text-emerald-400 shrink-0 mt-0.5" />
+              <span>No olvides guardar el comprobante para reportar tu pedido por WhatsApp.</span>
+            </div>
+          </div>
+        </div>
+
+        {/* LADO DERECHO: SECCIÓN DEL QR ÚNICO INTEROPERABLE (BRE-B) */}
+        <div className="flex flex-col items-center justify-center border-l lg:border-l border-white/5 lg:pl-12">
+          <div className="text-center lg:text-left w-full mb-6">
+            <div className="flex items-center justify-center lg:justify-start gap-3 mb-2">
+              <QrCode className="size-6 text-violet-500" />
+              <h2 className="text-2xl font-black tracking-tight">Pago Express QR</h2>
+            </div>
+            <p className="text-sm text-gray-400 font-medium">Escanea de forma interoperable desde cualquier banco usando la nueva red Bre-B.</p>
+          </div>
+
+          <div className="relative group">
+            {/* Aura de luz violeta */}
+            <div className="absolute inset-0 bg-violet-600/15 blur-[100px] rounded-full opacity-60 group-hover:opacity-90 transition-opacity" />
             
-            {/* Fondo estético con tus luces de colores de marca */}
-            <div className="absolute inset-0 overflow-hidden -z-10 pointer-events-none">
-                <div className="absolute rounded-full top-20 right-10 size-130 bg-[#2E08CF] blur-[120px] opacity-40" />
-                <div className="absolute rounded-full top-80 left-0 size-130 bg-[#D10A8A] blur-[120px] opacity-30" />
-                <div className="absolute rounded-full -top-40 left-1/3 size-130 bg-[#F26A06] blur-[120px] opacity-20" />
+            {/* Contenedor del QR Limpio */}
+            <div className="relative bg-white p-4 rounded-[2.5rem] shadow-2xl transition-transform duration-500 hover:scale-[1.01]">
+              <img 
+                src="/assets/qrpagos.png" 
+                alt="Código QR de Pago Bre-B Nequi CAFiiTECH" 
+                className="w-full max-w-[290px] h-auto rounded-3xl object-contain mx-auto"
+              />
             </div>
+          </div>
 
-            {/* Cabecera de la página */}
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 border-b border-white/10 pb-8 mx-auto max-w-5xl">
-                <div>
-                    <Link href="/" className="inline-flex items-center gap-2 text-sm text-gray-400 hover:text-violet-400 transition mb-4 group">
-                        <ArrowLeft className="size-4 group-hover:-translate-x-1 transition-transform" />
-                        Volver al inicio
-                    </Link>
-                    <h1 className="text-3xl md:text-5xl font-bold tracking-tight">
-                        Métodos de Pago <span className="text-violet-500">Oficiales</span>
-                    </h1>
-                    <p className="text-gray-400 text-sm md:text-base mt-2">
-                        Realiza tus transferencias de forma transparente y segura. Reporta tu comprobante por WhatsApp.
-                    </p>
-                </div>
-            </div>
+          <div className="mt-6 flex items-center gap-2.5 bg-white/5 border border-white/10 px-4 py-1.5 rounded-full">
+            <ShieldCheck className="size-4 text-emerald-400" />
+            <span className="text-[10px] uppercase font-bold tracking-wider text-gray-300">Escanea y Paga Fácil sin Comisiones</span>
+          </div>
 
-            <div className="max-w-5xl mx-auto mt-12 space-y-12">
-                
-                {/* 💳 SECCIÓN 1: CUENTAS BANCARIAS */}
-                <div>
-                    <h2 className="text-xl font-bold text-white flex items-center gap-2 mb-6">
-                        <CreditCard className="text-violet-400 size-5" />
-                        Transferencias Bancarias
-                    </h2>
-                    
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        {cuentasBancarias.map((cta) => (
-                            <motion.div
-                                key={cta.id}
-                                className={`glass border border-white/10 rounded-2xl p-6 bg-gradient-to-br ${cta.color} relative overflow-hidden group`}
-                                initial={{ opacity: 0, y: 30 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.4 }}
-                            >
-                                <div className="flex justify-between items-start">
-                                    <div>
-                                        <span className="text-xs text-gray-400 font-medium uppercase tracking-wider">{cta.tipo}</span>
-                                        <h3 className="text-2xl font-black tracking-tight text-white mt-0.5">{cta.banco}</h3>
-                                    </div>
-                                    <ShieldCheck className="size-5 text-emerald-400" />
-                                </div>
+          {/* BOTÓN WHATSAPP DE REPORTE */}
+          <div className="w-full mt-8 max-w-[320px]">
+            <a 
+              href="https://wa.me/573052311490?text=¡Hola%20CAFiiTECH!%20👋%20Acabo%20de%20realizar%20el%20pago,%20aquí%20tengo%20el%20comprobante%20de%20mi%20pedido." 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="w-full flex items-center justify-center gap-3 bg-white text-black font-black py-4 rounded-2xl hover:bg-emerald-500 hover:text-white transition-all duration-300 shadow-xl active:scale-95 text-sm group"
+            >
+              <MessageCircle className="size-5 transition-transform group-hover:rotate-12" />
+              Reportar Pago por WhatsApp
+            </a>
+          </div>
+        </div>
 
-                                <div className="mt-6 p-3 bg-black/40 border border-white/5 rounded-xl flex items-center justify-between gap-4">
-                                    <div>
-                                        <span className="text-[10px] text-white/40 block uppercase font-bold">Número de cuenta</span>
-                                        <span className="text-lg font-mono font-bold text-white tracking-wider">{cta.numero}</span>
-                                    </div>
-                                    <button 
-                                        onClick={() => copiarAlPortapapeles(cta.numero, cta.id)}
-                                        className="p-2.5 rounded-lg bg-white/5 hover:bg-white text-gray-400 hover:text-black transition-all duration-200"
-                                        title="Copiar número"
-                                    >
-                                        {copiedId === cta.id ? <Check className="size-4 text-emerald-500" /> : <Copy className="size-4" />}
-                                    </button>
-                                </div>
+      </div>
 
-                                <div className="mt-4 text-xs text-gray-400">
-                                    <span className="font-medium block text-white/50">Titular autorizado:</span>
-                                    <span className="text-white font-semibold">{cta.titular}</span>
-                                </div>
-                            </motion.div>
-                        ))}
-                    </div>
-                </div>
-
-                {/* 📱 SECCIÓN 2: CÓDIGOS QR */}
-                <div className="pt-6 border-t border-white/10">
-                    <h2 className="text-xl font-bold text-white flex items-center gap-2 mb-6">
-                        <QrCode className="text-violet-400 size-5" />
-                        Códigos QR de Pago Rápido
-                    </h2>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        {codigosQR.map((qr, index) => (
-                            <motion.div
-                                key={index}
-                                className="glass border border-white/5 rounded-2xl p-6 flex flex-col sm:flex-row items-center gap-6 hover:border-violet-500/20 transition-colors"
-                                initial={{ opacity: 0, y: 30 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.2 }}
-                            >
-                                {/* Contenedor del QR */}
-                                <div className="size-36 bg-white rounded-xl p-2 shrink-0 shadow-lg flex items-center justify-center overflow-hidden border border-white/10 relative group">
-                                    <img 
-                                        src={qr.image} 
-                                        alt={qr.banco} 
-                                        className="size-32 object-contain"
-                                        onError={(e) => {
-                                            e.target.style.display = 'none';
-                                            e.target.nextSibling.style.display = 'block';
-                                        }}
-                                    />
-                                    <span className="hidden text-black/40 text-[10px] font-bold text-center uppercase">[ QR Imagen ]</span>
-                                </div>
-
-                                {/* Info del QR */}
-                                <div className="text-center sm:text-left space-y-2">
-                                    <h3 className="text-lg font-bold text-white tracking-tight">{qr.banco}</h3>
-                                    <p className="text-xs text-gray-400 leading-relaxed">{qr.instrucciones}</p>
-                                    <span className="inline-block bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase mt-2">
-                                        Escanear y Pagar
-                                    </span>
-                                </div>
-                            </motion.div>
-                        ))}
-                    </div>
-                </div>
-
-                {/* 💡 AVISO FINAL PARA CERRAR LA CONFIANZA */}
-                <div className="bg-gradient-to-r from-violet-950/20 to-black border border-violet-500/20 rounded-2xl p-6 text-center max-w-3xl mx-auto space-y-2">
-                    <p className="text-sm font-semibold text-white">¿Ya realizaste tu transferencia?</p>
-                    <p className="text-xs text-gray-400">
-                        Por favor toma una captura de pantalla del comprobante exitoso y envíala a nuestro WhatsApp oficial junto con tus datos de envío para procesar tu orden de inmediato.
-                    </p>
-                </div>
-
-            </div>
-        </main>
-    );
+    </div>
+  );
 }

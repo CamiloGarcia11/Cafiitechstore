@@ -1,22 +1,22 @@
+'use client';
 import SectionTitle from "@/components/section-title";
 import { motion } from "framer-motion";
 import { useRef } from "react";
-import { ShoppingCart, Star, Battery, Radio } from "lucide-react";
+import { ShoppingCart, Star, Battery } from "lucide-react";
 
 export default function Testimonials() {
     const ref = useRef([]);
     
-    // Aquí defines los audífonos y productos estrella
+    // Configuración de los AirPods y productos estrella con sus rutas correctas
     const data = [
         {
             id: "airpods-2",
             name: 'AirPods 2da Generación',
             category: 'Especiales',
             features: 'Diseño clásico y conexión instantánea. Hasta 5 horas de música continua con una sola carga.',
-            price: 'Precio Especial', // Puedes cambiar esto por el precio real Ej: "$199.000"
+            price: 'Precio Especial',
             rating: 5,
-            // Reemplaza 'airpods2.png' por el nombre real de tu foto en public/assets/
-            image: '/assets/airpods2.png', 
+            image: '/assets/airpods_2.1.png', 
             badge: 'Más Vendido',
             spec: 'Chip H1 - Conexión ultra rápida'
         },
@@ -25,10 +25,9 @@ export default function Testimonials() {
             name: 'AirPods 3ra Generación',
             category: 'Premium',
             features: 'Audio espacial personalizado con seguimiento de la cabeza y resistencia al agua/sudor.',
-            price: 'Calidad Premium', // Puedes poner el precio real Ej: "$299.000"
+            price: 'Calidad Premium',
             rating: 5,
-            // Reemplaza 'airpods3.png' por el nombre real de tu foto en public/assets/
-            image: '/assets/airpods3.png', 
+            image: '/assets/airpods_3.png', 
             badge: 'Audio Espacial',
             spec: 'Sensor de fuerza - Carga MagSafe'
         },
@@ -39,8 +38,7 @@ export default function Testimonials() {
             features: 'Lo último en tecnología elegida minuciosamente bajo los estándares de calidad CAFiiTECH.',
             price: 'Nueva Colección',
             rating: 5,
-            // Reemplaza 'tech.png' por otra foto de tus productos en public/assets/
-            image: '/assets/tech.png', 
+            image: '/assets/cargador.png', 
             badge: 'Novedades',
             spec: 'Garantía oficial CAFiiTECH'
         },
@@ -72,25 +70,23 @@ export default function Testimonials() {
                         }}
                     >
                         <div>
-                            {/* Imagen del Producto y Badge */}
-                            <div className="relative w-full h-56 bg-white/5 rounded-xl flex items-center justify-center overflow-hidden border border-white/5 group">
-                                <span className="absolute top-3 left-3 bg-violet-600 text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full shadow-md">
+                            {/* CONTENEDOR DE IMAGEN CORREGIDO */}
+                            <div className="relative w-full h-64 bg-neutral-900 rounded-xl flex items-center justify-center overflow-hidden border border-white/5 group">
+                                <span className="absolute top-3 left-3 z-10 bg-violet-600 text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full shadow-md">
                                     {item.badge}
                                 </span>
                                 
-                                {/* Etiqueta de estrellas */}
-                                <div className="absolute top-3 right-3 flex items-center gap-0.5 bg-black/40 backdrop-blur-md px-2 py-1 rounded-lg text-amber-400 text-xs font-semibold">
+                                <div className="absolute top-3 right-3 z-10 flex items-center gap-0.5 bg-black/50 backdrop-blur-md px-2 py-1 rounded-lg text-amber-400 text-xs font-semibold">
                                     <Star className="size-3 fill-amber-400 text-amber-400" />
                                     <span>5.0</span>
                                 </div>
 
-                                {/* Imagen: Si la foto no existe aún, mostrará el nombre como texto */}
+                                {/* Ajustes aplicados: object-cover y h-full para rellenar de forma limpia */}
                                 <img 
-                                    className='max-h-44 w-auto object-contain transition-transform duration-500 group-hover:scale-110' 
+                                    className='w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105' 
                                     src={item.image} 
                                     alt={item.name}
                                     onError={(e) => {
-                                        // Esto evita que la página se rompa si la foto aún no está cargada en assets
                                         e.target.style.display = 'none';
                                         e.target.nextSibling.style.display = 'flex';
                                     }}
@@ -120,7 +116,7 @@ export default function Testimonials() {
                             </div>
                             
                             <a 
-                                href="https://wa.me/tu-numero-aqui" // Reemplaza luego con tu enlace de WhatsApp
+                                href="https://wa.me/573052311490" 
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="flex items-center gap-2 bg-white text-black hover:bg-violet-600 hover:text-white px-4 py-2.5 rounded-xl font-bold text-xs transition-colors duration-300"

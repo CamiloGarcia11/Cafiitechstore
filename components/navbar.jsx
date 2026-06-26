@@ -34,13 +34,14 @@ export default function Navbar() {
       </Link>
 
       {/* =========================================================
-          ENLACES DE NAVEGACIÓN (Tus links reales)
+          ENLACES DE NAVEGACIÓN (Tus links reales actualizados)
           ========================================================= */}
       <div className="hidden md:flex items-center gap-8">
         <Link href="/" className="text-sm font-semibold text-gray-300 hover:text-white transition-colors">
           Inicio
         </Link>
-        <Link href="#" className="text-sm font-semibold text-gray-300 hover:text-white transition-colors">
+        {/* Cambiado el '#' por la ruta '/conocenos' */}
+        <Link href="/conocenos" className="text-sm font-semibold text-gray-300 hover:text-white transition-colors">
           Conócenos
         </Link>
         <Link href="/pagos" className="text-sm font-semibold text-gray-300 hover:text-white transition-colors">
