@@ -110,7 +110,7 @@ export default function CatalogoPage() {
   };
 
   return (
-    <div className="min-h-screen bg-transparent text-white pb-24 pt-12 relative overflow-x-hidden">
+    <div className="min-h-screen bg-transparent text-white pb-24 pt-36 md:pt-40 relative overflow-x-hidden">
       
       {/* BOTÓN FLOTANTE GLOBAL DEL CARRITO */}
       {cart.length > 0 && (

@@ -27,7 +27,7 @@ export default function Testimonials() {
             features: 'Audio espacial personalizado con seguimiento de la cabeza y resistencia al agua/sudor.',
             price: 'Calidad Premium',
             rating: 5,
-            image: '/assets/airpods_3.png', 
+            image: '/assets/airpods_3.1.png', 
             badge: 'Audio Espacial',
             spec: 'Sensor de fuerza - Carga MagSafe'
         },
